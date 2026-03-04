@@ -1,42 +1,49 @@
 function burstColors() {
+
+    // Play Music
+    document.getElementById("bgMusic").play();
+
+    // Color Splash
     for (let i = 0; i < 120; i++) {
         createColor(Math.random() * window.innerWidth);
     }
+
+    // Firework
     createFirework();
 }
 
-function createColor(xPosition) {
-    let color = document.createElement("div");
+function createColor(leftPosition) {
+    const color = document.createElement("div");
     color.classList.add("color");
 
-    let colors = ["#ff4e50", "#fc913a", "#f9d423", "#00c9ff", "#92fe9d", "#ff00de"];
-    color.style.background = colors[Math.floor(Math.random() * colors.length)];
-    color.style.left = xPosition + "px";
-    color.style.animationDuration = (Math.random() * 2 + 2) + "s";
+    color.style.left = leftPosition + "px";
+    color.style.backgroundColor =
+        "hsl(" + Math.random() * 360 + ", 100%, 50%)";
 
     document.body.appendChild(color);
 
     setTimeout(() => {
         color.remove();
-    }, 4000);
+    }, 3000);
 }
 
-// Mouse splash
-document.addEventListener("mousemove", function(e) {
-    createColor(e.pageX);
-});
-
-// Firework creator
 function createFirework() {
-    let firework = document.createElement("div");
-    firework.classList.add("firework");
+    const x = Math.random() * window.innerWidth;
+    const y = Math.random() * window.innerHeight / 2;
 
-    firework.style.left = Math.random() * window.innerWidth + "px";
-    firework.style.top = Math.random() * (window.innerHeight / 2) + "px";
+    for (let i = 0; i < 30; i++) {
+        const fire = document.createElement("div");
+        fire.classList.add("firework");
 
-    document.body.appendChild(firework);
+        fire.style.left = x + "px";
+        fire.style.top = y + "px";
+        fire.style.backgroundColor =
+            "hsl(" + Math.random() * 360 + ", 100%, 50%)";
 
-    setTimeout(() => {
-        firework.remove();
-    }, 1000);
+        document.body.appendChild(fire);
+
+        setTimeout(() => {
+            fire.remove();
+        }, 1000);
+    }
 }
