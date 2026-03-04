@@ -1,4 +1,4 @@
-function startColors() {
+function burstColors() {
     for (let i = 0; i < 80; i++) {
         let color = document.createElement("div");
         color.classList.add("color");
