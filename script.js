@@ -1,76 +1,42 @@
-/* ---------- General Body Styling ---------- */
-body {
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    text-align: center;
-    font-family: 'Arial', sans-serif; /* Modern font */
-    color: white;
+const btn = document.getElementById("celebrateBtn");
 
-    /* Moving gradient background */
-    background: linear-gradient(-45deg, #ff4e50, #fc913a, #f9d423, #24c6dc);
-    background-size: 400% 400%;
-    animation: gradientMove 8s ease infinite;
+// Create a new Audio object dynamically inside click
+btn.addEventListener("click", () => {
+    const music = new Audio("holi.mp3");
+    music.loop = true;
+    music.volume = 1.0;
+
+    // Try to play music after button click
+    music.play().then(() => {
+        console.log("Music started ✅");
+    }).catch(err => {
+        console.log("Music blocked:", err);
+    });
+
+    // Fireworks + color splash
+    for (let i = 0; i < 120; i++) createColor(Math.random() * window.innerWidth);
+    createFirework();
+});
+
+function createColor(left) {
+    const c = document.createElement("div");
+    c.className = "color";
+    c.style.left = left + "px";
+    c.style.backgroundColor = `hsl(${Math.random()*360},100%,50%)`;
+    document.body.appendChild(c);
+    setTimeout(() => c.remove(), 3000);
 }
 
-/* ---------- Gradient Animation ---------- */
-@keyframes gradientMove {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-}
-
-/* ---------- Header ---------- */
-h1 {
-    margin-top: 120px;
-    font-size: 60px;
-    text-shadow: 2px 2px 15px black;
-}
-
-/* ---------- Celebrate Button ---------- */
-button {
-    padding: 15px 40px;
-    font-size: 20px;
-    border: none;
-    border-radius: 30px;
-    cursor: pointer;
-    background: white;
-    color: #ff4e50;
-    font-weight: bold;
-    transition: 0.3s;
-}
-
-button:hover {
-    background: #ff4e50;
-    color: white;
-}
-
-/* ---------- Color Splash ---------- */
-.color {
-    position: absolute;
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    animation: fall 3s linear forwards;
-}
-
-/* Falling animation */
-@keyframes fall {
-    0% { transform: translateY(0); opacity: 1; }
-    100% { transform: translateY(800px); opacity: 0; }
-}
-
-/* ---------- Fireworks ---------- */
-.firework {
-    position: absolute;
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    animation: explode 1s ease-out forwards;
-}
-
-/* Explode animation */
-@keyframes explode {
-    0% { transform: scale(1); opacity: 1; }
-    100% { transform: scale(6); opacity: 0; }
+function createFirework() {
+    const x = Math.random() * window.innerWidth;
+    const y = Math.random() * window.innerHeight / 2;
+    for (let i = 0; i < 40; i++) {
+        const f = document.createElement("div");
+        f.className = "firework";
+        f.style.left = x + "px";
+        f.style.top = y + "px";
+        f.style.backgroundColor = `hsl(${Math.random()*360},100%,50%)`;
+        document.body.appendChild(f);
+        setTimeout(() => f.remove(), 1000);
+    }
 }
