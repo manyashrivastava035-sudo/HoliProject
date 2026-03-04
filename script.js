@@ -1,16 +1,19 @@
-function burstColors() {
+document.getElementById("celebrateBtn").addEventListener("click", function () {
 
-    // Play Music
-    document.getElementById("bgMusic").play();
+    const music = document.getElementById("bgMusic");
 
-    // Color Splash
+    // Play music safely
+    music.play().catch(error => console.log(error));
+
+    // Color splash
     for (let i = 0; i < 120; i++) {
         createColor(Math.random() * window.innerWidth);
     }
 
-    // Firework
+    // Firework burst
     createFirework();
-}
+});
+
 
 function createColor(leftPosition) {
     const color = document.createElement("div");
@@ -27,11 +30,12 @@ function createColor(leftPosition) {
     }, 3000);
 }
 
+
 function createFirework() {
     const x = Math.random() * window.innerWidth;
     const y = Math.random() * window.innerHeight / 2;
 
-    for (let i = 0; i < 30; i++) {
+    for (let i = 0; i < 40; i++) {
         const fire = document.createElement("div");
         fire.classList.add("firework");
 
