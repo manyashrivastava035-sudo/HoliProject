@@ -1,98 +1,72 @@
 body {
     margin: 0;
     padding: 0;
-    font-family: 'Poppins', sans-serif;
-    text-align: center;
     overflow: hidden;
+    font-family: Arial, sans-serif;
+    text-align: center;
     color: white;
-    height: 100vh;
-
-    background: linear-gradient(-45deg, #ff4e50, #fc913a, #f9d423, #24c6dc);
+    background: linear-gradient(-45deg, #ff4e50, #fc913a, #f9d423, #e1f5c4);
     background-size: 400% 400%;
-    animation: gradientBG 10s ease infinite;
+    animation: gradientMove 8s ease infinite;
 }
 
-@keyframes gradientBG {
+@keyframes gradientMove {
     0% { background-position: 0% 50%; }
     50% { background-position: 100% 50%; }
     100% { background-position: 0% 50%; }
 }
 
-.container {
-    margin-top: 120px;
-}
-
 h1 {
+    margin-top: 100px;
     font-size: 60px;
-    animation: glow 2s infinite alternate;
-}
-
-@keyframes glow {
-    from { text-shadow: 0 0 10px #fff; }
-    to { text-shadow: 0 0 25px #00fff2; }
-}
-
-p {
-    font-size: 22px;
+    text-shadow: 2px 2px 10px black;
 }
 
 button {
-    padding: 15px 30px;
-    font-size: 18px;
+    padding: 15px 40px;
+    font-size: 20px;
     border: none;
     border-radius: 30px;
+    cursor: pointer;
     background: white;
     color: #ff4e50;
-    cursor: pointer;
+    font-weight: bold;
     transition: 0.3s;
 }
 
 button:hover {
     background: #ff4e50;
     color: white;
-    transform: scale(1.1);
 }
 
 .color {
     position: absolute;
-    width: 15px;
-    height: 15px;
+    width: 20px;
+    height: 20px;
     border-radius: 50%;
-    pointer-events: none;
-    animation: fall linear forwards;
+    animation: fall 3s linear forwards;
 }
 
 @keyframes fall {
-    0% { transform: translateY(-50px); opacity: 1; }
-    100% { transform: translateY(100vh); opacity: 0; }
+    0% { transform: translateY(0); opacity: 1; }
+    100% { transform: translateY(800px); opacity: 0; }
 }
 
-/* Fireworks */
 .firework {
     position: absolute;
-    width: 10px;
-    height: 10px;
-    background: transparent;
+    width: 8px;
+    height: 8px;
     border-radius: 50%;
-    box-shadow:
-        0 -50px #ff4e50,
-        35px -35px #fc913a,
-        50px 0 #f9d423,
-        35px 35px #00c9ff,
-        0 50px #92fe9d,
-        -35px 35px #ff00de,
-        -50px 0 #ff4e50,
-        -35px -35px #fc913a;
     animation: explode 1s ease-out forwards;
 }
 
 @keyframes explode {
     0% {
-        transform: scale(0.2);
+        transform: scale(1);
         opacity: 1;
     }
     100% {
-        transform: scale(1.5);
+        transform: scale(6);
         opacity: 0;
     }
 }
